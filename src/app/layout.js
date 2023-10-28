@@ -22,7 +22,8 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-color-theme={colorTheme}
-      style={colorTheme === 'light' ? LIGHT_COLORS : DARK_COLORS}
+      // default to light colors if the user disables JS
+      style={colorTheme === 'dark' ? DARK_COLORS : LIGHT_COLORS}
     >
       <body>
         <header className="site-header">
