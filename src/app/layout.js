@@ -2,7 +2,7 @@ import React from 'react';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 
-import ThemeToggle from '@/components/ThemeToggle';
+import ColorThemeToggle from '@/components/ColorThemeToggle';
 
 import { DARK_COLORS, LIGHT_COLORS } from '@/constant';
 
@@ -15,7 +15,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const cookieStore = cookies();
-  const colorTheme = cookieStore.get('color-theme')?.value || 'light';
+  // Possible color-theme values: 'light' | 'dark' | 'system'
+  const colorTheme = cookieStore.get('color-theme')?.value || 'system';
 
   return (
     <html
@@ -26,7 +27,7 @@ export default function RootLayout({ children }) {
       <body>
         <header className="site-header">
           <Link href="">Dark Mode Demo</Link>
-          <ThemeToggle initialTheme={colorTheme} />
+          <ColorThemeToggle initialTheme={colorTheme} />
         </header>
         {children}
       </body>
